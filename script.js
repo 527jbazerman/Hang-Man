@@ -3,9 +3,26 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // WORD LISTS FOR DIFFICULTY
-let easyWords = ["LIONS", "JETS", "RAVENS", "EAGLES", "GIANTS", "OBJ", "TJWATT", "referee"];
+let easyWords = [
+  "LIONS",
+  "JETS",
+  "RAVENS",
+  "EAGLES",
+  "GIANTS",
+  "OBJ",
+  "TJWATT",
+  "REFEREE",
+];
 let mediumWords = ["PANTHERS", "VIKINGS", "FALCONS", "PATRIOTS", "ABDULCARTER"];
-let hardWords = ["JAGUARS", "NEWYORKJETSSUCK", "AARONRODGERS ", "JAXSONDART", "SKATTABOOOOOOO", "NATIONALFOOTBALLCONFERENCE"];
+let hardWords = [
+  "JAGUARS",
+  "NEWYORKJETSSUCK",
+  "AARONRODGERS ",
+  "JAXSONDART",
+  "SKATTABOOOOOOO",
+  "NATIONALFOOTBALLCONFERENCE",
+  "AMERICANFOOTBALLCONFERENCE",
+];
 
 let difficulty = "easy";
 
@@ -89,12 +106,13 @@ function updateDisplay() {
   }
 
   document.getElementById("wordDisplay").textContent = display;
-  document.getElementById("guessedLetters").textContent = guessedLetters.join(" ");
+  document.getElementById("guessedLetters").textContent =
+    guessedLetters.join(" ");
 
   let guessesLeft = maxWrong - wrongGuesses;
   document.getElementById("guessesLeft").textContent = guessesLeft;
 
-  // used AI for health bar only way it could work 
+  // used AI for health bar only way it could work
   // health bar decreases when wrong guesses increase
   let healthPercent = (guessesLeft / maxWrong) * 100;
   document.getElementById("healthBar").style.width = healthPercent + "%";
@@ -108,6 +126,16 @@ function updateDisplay() {
   if (wrongGuesses >= maxWrong) {
     document.getElementById("message").textContent =
       "You Lose! Word was: " + secretWord;
+
+    // used AI for this
+    // reveal the full word and remove underscores
+    let reveal = "";
+
+    for (let i = 0; i < secretWord.length; i++) {
+      reveal += secretWord.charAt(i) + " ";
+    }
+
+    document.getElementById("wordDisplay").textContent = reveal;
   }
 }
 
