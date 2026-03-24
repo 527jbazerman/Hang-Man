@@ -23,24 +23,17 @@
 
             <!-- DIFFICULTY BUTTONS -->
             <div class="mb-4">
-
                 <strong>Select Difficulty:</strong><br><br>
-
-                <button onclick="setDifficulty('easy')" class="btn btn-success">Easy</button>
-                <button onclick="setDifficulty('medium')" class="btn btn-warning">Medium</button>
-                <button onclick="setDifficulty('hard')" class="btn btn-danger">Hard</button>
-
+                <button onclick="setDifficulty('easy')" class="btn difficulty-btn btn-success">Easy</button>
+                <button onclick="setDifficulty('medium')" class="btn difficulty-btn btn-warning">Medium</button>
+                <button onclick="setDifficulty('hard')" class="btn difficulty-btn btn-danger">Hard</button>
             </div>
 
             <!-- WORD DISPLAY -->
-            <div id="wordDisplay">
-                _ _ _ _ _
-            </div>
+            <div id="wordDisplay">_ _ _ _ _</div>
 
-            <!-- HEALTH BAR (AI assisted feature) -->
-            <div id="healthContainer">
-                <div id="healthBar"></div>
-            </div>
+            <!-- HEALTH BAR (VIDEO GAME HEARTS) -->
+            <div id="healthContainer"></div>
 
             <!-- INPUT -->
             <div class="mt-3">
@@ -59,7 +52,7 @@
                 <strong>Guesses Left:</strong>
                 <span id="guessesLeft"></span>
             </div>
-            
+
             <!-- MESSAGE -->
             <div id="message" class="mt-3"></div>
 

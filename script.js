@@ -17,7 +17,7 @@ let mediumWords = ["PANTHERS", "VIKINGS", "FALCONS", "PATRIOTS", "ABDULCARTER"];
 let hardWords = [
   "JAGUARS",
   "NEWYORKJETSSUCK",
-  "AARONRODGERS ",
+  "AARONRODGERS",
   "JAXSONDART",
   "SKATTABOOOOOOO",
   "NATIONALFOOTBALLCONFERENCE",
@@ -41,7 +41,6 @@ function setDifficulty(level) {
 // START GAME
 function startGame() {
   let wordList;
-
   if (difficulty === "easy") wordList = easyWords;
   if (difficulty === "medium") wordList = mediumWords;
   if (difficulty === "hard") wordList = hardWords;
@@ -60,9 +59,7 @@ function startGame() {
 // GUESS LETTER
 function guessLetter() {
   let input = document.getElementById("letterInput").value;
-
   document.getElementById("letterInput").value = "";
-
   input = input.toUpperCase();
 
   if (input.length !== 1) {
@@ -93,11 +90,8 @@ function guessLetter() {
 // UPDATE DISPLAY
 function updateDisplay() {
   let display = "";
-
-  // required loop
   for (let i = 0; i < secretWord.length; i++) {
     let letter = secretWord.charAt(i);
-
     if (guessedLetters.includes(letter)) {
       display += letter + " ";
     } else {
@@ -108,14 +102,9 @@ function updateDisplay() {
   document.getElementById("wordDisplay").textContent = display;
   document.getElementById("guessedLetters").textContent =
     guessedLetters.join(" ");
+  document.getElementById("guessesLeft").textContent = maxWrong - wrongGuesses;
 
-  let guessesLeft = maxWrong - wrongGuesses;
-  document.getElementById("guessesLeft").textContent = guessesLeft;
-
-  // used AI for health bar only way it could work
-  // health bar decreases when wrong guesses increase
-  let healthPercent = (guessesLeft / maxWrong) * 100;
-  document.getElementById("healthBar").style.width = healthPercent + "%";
+  updateHealth();
 
   // WIN
   if (!display.includes("_")) {
@@ -127,15 +116,26 @@ function updateDisplay() {
     document.getElementById("message").textContent =
       "You Lose! Word was: " + secretWord;
 
-    // used AI for this
-    // reveal the full word and remove underscores
     let reveal = "";
-
     for (let i = 0; i < secretWord.length; i++) {
       reveal += secretWord.charAt(i) + " ";
     }
-
     document.getElementById("wordDisplay").textContent = reveal;
+  }
+}
+
+// UPDATE HEARTS
+function updateHealth() {
+  const container = document.getElementById("healthContainer");
+  container.innerHTML = "";
+
+  for (let i = 0; i < maxWrong; i++) {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    if (i < wrongGuesses) {
+      heart.classList.add("empty");
+    }
+    container.appendChild(heart);
   }
 }
 
